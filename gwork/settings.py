@@ -26,7 +26,11 @@ SECRET_KEY = config('SECRET_KEY')
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = [
+    "gworks.netlify.app",
+    "gworkbackend.onrender.com",
+    "localhost",
+]
 
 
 # Application definition
@@ -230,6 +234,7 @@ CORS_ALLOWED_ORIGINS = [
     "http://localhost:3000",  # Ton frontend React
     "http://127.0.0.1:3000",
     "https://gworks.netlify.app",
+    
 ]
 
 # Si tu veux autoriser les cookies/credentials
