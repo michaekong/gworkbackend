@@ -9,8 +9,9 @@ https://docs.djangoproject.com/en/4.2/topics/settings/
 For the full list of settings and their values, see
 https://docs.djangoproject.com/en/4.2/ref/settings/
 """
-
+from decouple import config
 from pathlib import Path
+import dj_database_url  
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -20,7 +21,7 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # See https://docs.djangoproject.com/en/4.2/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = 'django-insecure-wa=q^dc+u7i86)jhda)05i1v40vous+1323+%l%=dmtui5_-)9'
+SECRET_KEY = config('SECRET_KEY')
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
@@ -89,17 +90,20 @@ WSGI_APPLICATION = 'gwork.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/4.2/ref/settings/#databases
 
+#DATABASES = {
+#    'default': {
+#        'ENGINE': 'django.contrib.gis.db.backends.postgis', # Moteur PostGIS
+#        'NAME': 'gwork_db',
+#        'USER': 'gwork_user',
+#        'PASSWORD': 'gwork_password',
+#        'HOST': 'localhost',
+#        'PORT': '5432',
+#    }
+#}
 DATABASES = {
-    'default': {
-        'ENGINE': 'django.contrib.gis.db.backends.postgis', # Moteur PostGIS
-        'NAME': 'gwork_db',
-        'USER': 'gwork_user',
-        'PASSWORD': 'gwork_password',
-        'HOST': 'localhost',
-        'PORT': '5432',
-    }
+   'default': dj_database_url.parse(config('DATABASE_URL'))
+   
 }
-
 # Password validation
 # https://docs.djangoproject.com/en/4.2/ref/settings/#auth-password-validators
 
@@ -172,12 +176,12 @@ MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 # gwork/settings.py
 
 # Configuration Email (Gmail)
-EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
-EMAIL_HOST = 'smtp.gmail.com'
+EMAIL_BACKEND =config('EMAIL_BACEND')
+EMAIL_HOST = config('EMAIL_HOST')
 EMAIL_PORT = 587
 EMAIL_USE_TLS = True
-EMAIL_HOST_USER = 'michaelndekebai@gmail.com'  # Ton email Gmail
-EMAIL_HOST_PASSWORD = 'lqwy aznu phfn tlbr'  # Mot de passe d'application à 16 caractères
+EMAIL_HOST_USER = config('EMAIL_HOST_USER')  # Ton email Gmail
+EMAIL_HOST_PASSWORD = config('EMAIL_HOST_PASSWORD')  # Mot de passe d'application à 16 caractères
 DEFAULT_FROM_EMAIL = f'GWork <{EMAIL_HOST_USER}>'
 
 # URL du frontend (pour les liens dans les emails)

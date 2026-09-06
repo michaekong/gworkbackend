@@ -127,7 +127,10 @@ class ResendVerificationEmailView(APIView):
             if user.is_verified:
                 return Response({"message": "Ce compte est déjà vérifié."}, status=status.HTTP_200_OK)
             
-            send_verification_email(user)
+            threading.Thread(
+                target=send_verification_email, 
+                args=(user,)
+            ).start()
             return Response({"message": "Email de vérification renvoyé avec succès."}, status=status.HTTP_200_OK)
             
         except User.DoesNotExist:
@@ -252,7 +255,10 @@ class RequestPasswordResetView(APIView):
 
         try:
             user = User.objects.get(email=email)
-            send_password_reset_email(user)
+            threading.Thread(
+                target=send_password_reset_email, 
+                args=(user,)
+            ).start()
         except User.DoesNotExist:
             pass  # Pour des raisons de sécurité
 
