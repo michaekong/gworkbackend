@@ -1,6 +1,6 @@
 asgiref==3.8.1
 attrs==25.3.0
-backports.zoneinfo==0.2.1
+
 dj-database-url==3.0.1
 django==4.2.30
 django-cors-headers==4.4.0
@@ -27,3 +27,4 @@ sqlparse==0.5.5
 typing-extensions==4.13.2
 uritemplate==4.1.1
 zipp==3.20.2
+python=3.11.11

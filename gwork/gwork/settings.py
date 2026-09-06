@@ -11,7 +11,7 @@ https://docs.djangoproject.com/en/4.2/ref/settings/
 """
 from decouple import config
 from pathlib import Path
-import dj_database_url  
+import dj_database_url
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -101,8 +101,11 @@ WSGI_APPLICATION = 'gwork.wsgi.application'
 #    }
 #}
 DATABASES = {
-   'default': dj_database_url.parse(config('DATABASE_URL'))
-   
+    'default': dj_database_url.parse(
+        config('DATABASE_URL'),
+        conn_max_age=600,
+        engine='django.contrib.gis.db.backends.postgis',
+    )
 }
 # Password validation
 # https://docs.djangoproject.com/en/4.2/ref/settings/#auth-password-validators
@@ -176,7 +179,7 @@ MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 # gwork/settings.py
 
 # Configuration Email (Gmail)
-EMAIL_BACKEND =config('EMAIL_BACEND')
+EMAIL_BACKEND =config('EMAIL_BACKEND')
 EMAIL_HOST = config('EMAIL_HOST')
 EMAIL_PORT = 587
 EMAIL_USE_TLS = True
