@@ -1,0 +1,31 @@
+{% extends 'emails/base_email.html' %}
+
+{% block title %}Vérification de compte{% endblock %}
+{% block header_title %}🚀 Bienvenue sur GWork !{% endblock %}
+
+{% block content %}
+<h2>Bonjour {{ username }},</h2>
+
+<p>Merci de vous être inscrit sur <strong>GWork</strong>, la plateforme de mise en relation professionnelle qui révolutionne la recherche d'emploi !</p>
+
+<div class="info-box">
+    <strong>📍 Votre atout : la géolocalisation</strong><br>
+    Grâce à notre système de zones d'activité, trouvez les opportunités les plus proches de vous ou proposez vos services dans votre zone d'intervention.
+</div>
+
+<p>Pour activer votre compte et commencer à explorer les opportunités, cliquez sur le bouton ci-dessous :</p>
+
+<p style="text-align: center;">
+    <a href="{{ verification_url }}" class="cta-button">Activer mon compte</a>
+</p>
+
+<div class="warning-box">
+    <strong>⏰ Important :</strong> Ce lien expirera dans <span class="expiry-notice">{{ expiry_hours }} heures</span>.
+</div>
+
+<p>Si le bouton ne fonctionne pas, copiez et collez ce lien dans votre navigateur :</p>
+<p style="word-break: break-all; font-size: 12px; color: #667eea;">{{ verification_url }}</p>
+
+<p>À très bientôt sur GWork !</p>
+<p><strong>L'équipe GWork</strong></p>
+{% endblock %}
