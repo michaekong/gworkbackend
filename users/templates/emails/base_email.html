@@ -3,95 +3,320 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>{% block title %}GWork{% endblock %}</title>
+    <title>{% block title %}GWork - Réseau BTP Cameroun{% endblock %}</title>
+    <!--[if mso]>
+    <noscript>
+        <xml>
+            <o:OfficeDocumentSettings>
+                <o:PixelsPerInch>96</o:PixelsPerInch>
+            </o:OfficeDocumentSettings>
+        </xml>
+    </noscript>
+    <![endif]-->
     <style>
+        /* Reset email */
+        body, table, td, a { -webkit-text-size-adjust: 100%; -ms-text-size-adjust: 100%; }
+        table, td { mso-table-lspace: 0pt; mso-table-rspace: 0pt; }
+        img { -ms-interpolation-mode: bicubic; border: 0; height: auto; line-height: 100%; outline: none; text-decoration: none; }
+        body { margin: 0 !important; padding: 0 !important; width: 100% !important; }
+        
+        /* Styles principaux */
         body {
             font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
             line-height: 1.6;
-            color: #333;
-            background-color: #f4f4f4;
+            color: #1e293b;
+            background-color: #F4F2EE;
             margin: 0;
             padding: 0;
+        }
+        .email-wrapper {
+            background-color: #F4F2EE;
+            padding: 30px 15px;
         }
         .email-container {
             max-width: 600px;
             margin: 0 auto;
             background-color: #ffffff;
-            border-radius: 8px;
+            border-radius: 16px;
             overflow: hidden;
-            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+            border: 1px solid #E0E0E0;
         }
+        
+        /* Header avec gradient BTP */
         .email-header {
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            background: linear-gradient(135deg, #0A66C2 0%, #004BD6 100%);
             color: white;
-            padding: 30px;
+            padding: 32px 30px;
             text-align: center;
+            position: relative;
+        }
+        .email-header::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background-image: 
+                linear-gradient(to right, rgba(255,255,255,0.08) 1px, transparent 1px),
+                linear-gradient(to bottom, rgba(255,255,255,0.08) 1px, transparent 1px);
+            background-size: 20px 20px;
+            opacity: 0.5;
+        }
+        .email-header-content {
+            position: relative;
+            z-index: 1;
+        }
+        .brand-badge {
+            display: inline-block;
+            background-color: rgba(255, 255, 255, 0.15);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            color: #ffffff;
+            font-size: 10px;
+            font-weight: 700;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            padding: 4px 12px;
+            border-radius: 20px;
+            margin-bottom: 12px;
         }
         .email-header h1 {
             margin: 0;
-            font-size: 28px;
-            font-weight: 600;
+            font-size: 24px;
+            font-weight: 800;
+            letter-spacing: -0.5px;
+            color: #ffffff;
         }
+        .email-header .subtitle {
+            margin: 8px 0 0 0;
+            font-size: 13px;
+            color: rgba(255, 255, 255, 0.85);
+            font-weight: 500;
+        }
+        
+        /* Body */
         .email-body {
-            padding: 40px 30px;
+            padding: 36px 30px;
+            background-color: #ffffff;
         }
         .email-body h2 {
-            color: #667eea;
+            color: #0A66C2;
             margin-top: 0;
+            font-size: 20px;
+            font-weight: 700;
+            letter-spacing: -0.3px;
         }
+        .email-body p {
+            color: #475569;
+            font-size: 14px;
+            margin: 12px 0;
+        }
+        .email-body strong {
+            color: #1e293b;
+        }
+        
+        /* Bouton CTA principal */
         .cta-button {
             display: inline-block;
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-            color: white;
-            padding: 14px 32px;
+            background: linear-gradient(135deg, #0A66C2 0%, #004BD6 100%);
+            color: #ffffff !important;
+            padding: 14px 36px;
             text-decoration: none;
-            border-radius: 6px;
-            font-weight: 600;
+            border-radius: 12px;
+            font-weight: 700;
+            font-size: 14px;
             margin: 20px 0;
-            transition: transform 0.2s;
+            letter-spacing: 0.3px;
+            box-shadow: 0 4px 12px rgba(10, 102, 194, 0.25);
+            transition: all 0.2s ease;
         }
         .cta-button:hover {
             transform: translateY(-2px);
+            box-shadow: 0 6px 16px rgba(10, 102, 194, 0.35);
         }
-        .warning-box {
-            background-color: #fff3cd;
-            border-left: 4px solid #ffc107;
-            padding: 15px;
-            margin: 20px 0;
-            border-radius: 4px;
+        .cta-button-danger {
+            background: linear-gradient(135deg, #dc2626 0%, #b91c1c 100%);
+            box-shadow: 0 4px 12px rgba(220, 38, 38, 0.25);
         }
+        .cta-button-success {
+            background: linear-gradient(135deg, #059669 0%, #047857 100%);
+            box-shadow: 0 4px 12px rgba(5, 150, 105, 0.25);
+        }
+        
+        /* Boxes d'information */
         .info-box {
-            background-color: #d1ecf1;
-            border-left: 4px solid #17a2b8;
-            padding: 15px;
+            background-color: #eff6ff;
+            border-left: 4px solid #0A66C2;
+            padding: 16px 18px;
             margin: 20px 0;
-            border-radius: 4px;
+            border-radius: 10px;
+            font-size: 13px;
+            color: #1e40af;
         }
-        .email-footer {
-            background-color: #f8f9fa;
-            padding: 20px 30px;
-            text-align: center;
-            font-size: 12px;
-            color: #6c757d;
-            border-top: 1px solid #dee2e6;
+        .info-box strong {
+            color: #0A66C2;
+            display: block;
+            margin-bottom: 4px;
+            font-size: 13px;
         }
+        
+        .warning-box {
+            background-color: #fef3c7;
+            border-left: 4px solid #f59e0b;
+            padding: 16px 18px;
+            margin: 20px 0;
+            border-radius: 10px;
+            font-size: 13px;
+            color: #92400e;
+        }
+        .warning-box strong {
+            color: #b45309;
+            display: block;
+            margin-bottom: 4px;
+            font-size: 13px;
+        }
+        
+        .danger-box {
+            background-color: #fef2f2;
+            border-left: 4px solid #dc2626;
+            padding: 16px 18px;
+            margin: 20px 0;
+            border-radius: 10px;
+            font-size: 13px;
+            color: #991b1b;
+        }
+        .danger-box strong {
+            color: #dc2626;
+            display: block;
+            margin-bottom: 4px;
+            font-size: 13px;
+        }
+        
+        .success-box {
+            background-color: #ecfdf5;
+            border-left: 4px solid #10b981;
+            padding: 16px 18px;
+            margin: 20px 0;
+            border-radius: 10px;
+            font-size: 13px;
+            color: #065f46;
+        }
+        .success-box strong {
+            color: #059669;
+            display: block;
+            margin-bottom: 4px;
+            font-size: 13px;
+        }
+        
+        /* Notice d'expiration */
         .expiry-notice {
-            color: #dc3545;
-            font-weight: 600;
+            color: #dc2626;
+            font-weight: 700;
+            background-color: #fef2f2;
+            padding: 2px 8px;
+            border-radius: 6px;
+            display: inline-block;
+        }
+        
+        /* Footer */
+        .email-footer {
+            background-color: #f8fafc;
+            padding: 24px 30px;
+            text-align: center;
+            font-size: 11px;
+            color: #64748b;
+            border-top: 1px solid #e2e8f0;
+        }
+        .email-footer p {
+            margin: 4px 0;
+            line-height: 1.5;
+        }
+        .footer-brand {
+            color: #0A66C2;
+            font-weight: 700;
+            text-decoration: none;
+        }
+        .footer-divider {
+            display: inline-block;
+            width: 3px;
+            height: 3px;
+            background-color: #cbd5e1;
+            border-radius: 50%;
+            margin: 0 8px;
+            vertical-align: middle;
+        }
+        .footer-links a {
+            color: #64748b;
+            text-decoration: none;
+            font-weight: 500;
+        }
+        .footer-links a:hover {
+            color: #0A66C2;
+        }
+        
+        /* Lien de secours */
+        .fallback-link {
+            word-break: break-all;
+            font-size: 11px;
+            color: #0A66C2;
+            background-color: #f1f5f9;
+            padding: 10px 14px;
+            border-radius: 8px;
+            display: block;
+            margin: 12px 0;
+            font-family: 'Courier New', monospace;
+            border: 1px dashed #cbd5e1;
+        }
+        
+        /* Responsive */
+        @media only screen and (max-width: 620px) {
+            .email-container { width: 100% !important; border-radius: 0 !important; }
+            .email-header { padding: 24px 20px !important; }
+            .email-body { padding: 28px 20px !important; }
+            .email-footer { padding: 20px !important; }
+            .cta-button { padding: 12px 24px !important; font-size: 13px !important; }
         }
     </style>
 </head>
-<body>
-    <div class="email-container">
-        <div class="email-header">
-            <h1>{% block header_title %}GWork{% endblock %}</h1>
-        </div>
-        <div class="email-body">
-            {% block content %}{% endblock %}
-        </div>
-        <div class="email-footer">
-            <p>© 2026 GWork. Tous droits réservés.</p>
-            <p>Si vous n'avez pas demandé cet email, vous pouvez l'ignorer en toute sécurité.</p>
+<body style="margin: 0; padding: 0; background-color: #F4F2EE; font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;">
+    <div class="email-wrapper">
+        <div class="email-container">
+            
+            <!-- Header avec motif blueprint BTP -->
+            <div class="email-header">
+                <div class="email-header-content">
+                    <div class="brand-badge">🚀 Réseau BTP Cameroun</div>
+                    <h1>{% block header_title %}GWork{% endblock %}</h1>
+                    <p class="subtitle">{% block header_subtitle %}Plateforme professionnelle de mise en relation{% endblock %}</p>
+                </div>
+            </div>
+            
+            <!-- Corps de l'email -->
+            <div class="email-body">
+                {% block content %}{% endblock %}
+            </div>
+            
+            <!-- Footer -->
+            <div class="email-footer">
+                <p style="margin-bottom: 8px;">
+                    <a href="http://localhost:3000" class="footer-brand">GWork</a>
+                    <span class="footer-divider"></span>
+                    <span>Opportunités BTP sécurisées au Cameroun</span>
+                </p>
+                <p class="footer-links">
+                    <a href="#">Centre d'aide</a>
+                    <span class="footer-divider"></span>
+                    <a href="#">Charte de confiance</a>
+                    <span class="footer-divider"></span>
+                    <a href="#">Contact</a>
+                </p>
+                <p style="margin-top: 12px; font-size: 10px; color: #94a3b8;">
+                    © 2026 GWork Inc. Tous droits réservés.<br>
+                    Si vous n'avez pas demandé cet email, vous pouvez l'ignorer en toute sécurité.
+                </p>
+            </div>
+            
         </div>
     </div>
 </body>

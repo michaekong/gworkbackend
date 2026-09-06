@@ -1,31 +1,33 @@
 {% extends 'emails/base_email.html' %}
 
-{% block title %}Vérification de compte{% endblock %}
-{% block header_title %}🚀 Bienvenue sur GWork !{% endblock %}
+{% block title %}Vérification de compte - GWork{% endblock %}
+{% block header_title %}Bienvenue sur GWork !{% endblock %}
+{% block header_subtitle %}Votre compte professionnel BTP est presque prêt{% endblock %}
 
 {% block content %}
-<h2>Bonjour {{ username }},</h2>
+<h2>Bonjour {{ username }}, 👋</h2>
 
-<p>Merci de vous être inscrit sur <strong>GWork</strong>, la plateforme de mise en relation professionnelle qui révolutionne la recherche d'emploi !</p>
+<p>Merci de vous être inscrit sur <strong>GWork</strong>, la plateforme de mise en relation professionnelle qui révolutionne la recherche d'emploi dans le BTP au Cameroun !</p>
 
 <div class="info-box">
-    <strong>📍 Votre atout : la géolocalisation</strong><br>
+    <strong>📍 Votre atout : la géolocalisation</strong>
     Grâce à notre système de zones d'activité, trouvez les opportunités les plus proches de vous ou proposez vos services dans votre zone d'intervention.
 </div>
 
-<p>Pour activer votre compte et commencer à explorer les opportunités, cliquez sur le bouton ci-dessous :</p>
+<p>Pour <strong>activer votre compte</strong> et commencer à explorer les opportunités, cliquez sur le bouton ci-dessous :</p>
 
-<p style="text-align: center;">
+<p style="text-align: center; margin: 28px 0;">
     <a href="{{ verification_url }}" class="cta-button">Activer mon compte</a>
 </p>
 
 <div class="warning-box">
-    <strong>⏰ Important :</strong> Ce lien expirera dans <span class="expiry-notice">{{ expiry_hours }} heures</span>.
+    <strong>⏰ Important</strong>
+    Ce lien expirera dans <span class="expiry-notice">{{ expiry_hours }} heures</span>. Passé ce délai, vous devrez en demander un nouveau.
 </div>
 
-<p>Si le bouton ne fonctionne pas, copiez et collez ce lien dans votre navigateur :</p>
-<p style="word-break: break-all; font-size: 12px; color: #667eea;">{{ verification_url }}</p>
+<p style="font-size: 13px; color: #64748b;">Si le bouton ne fonctionne pas, copiez et collez ce lien dans votre navigateur :</p>
+<code class="fallback-link">{{ verification_url }}</code>
 
-<p>À très bientôt sur GWork !</p>
-<p><strong>L'équipe GWork</strong></p>
+<p>À très bientôt sur <strong>GWork</strong> !</p>
+<p style="margin-top: 20px;"><strong>L'équipe GWork</strong><br><span style="font-size: 12px; color: #64748b;">Réseau BTP Cameroun</span></p>
 {% endblock %}
