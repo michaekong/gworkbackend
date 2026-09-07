@@ -30,6 +30,7 @@ ALLOWED_HOSTS = [
     "gworks.netlify.app",
     "gworkbackend.onrender.com",
     "localhost",
+    "127.0.0.1",
 ]
 
 
@@ -94,16 +95,17 @@ WSGI_APPLICATION = 'gwork.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/4.2/ref/settings/#databases
 
-#DATABASES = {
-#    'default': {
-#        'ENGINE': 'django.contrib.gis.db.backends.postgis', # Moteur PostGIS
-#        'NAME': 'gwork_db',
-#        'USER': 'gwork_user',
-#        'PASSWORD': 'gwork_password',
-#        'HOST': 'localhost',
-#        'PORT': '5432',
-#    }
-#}
+"""DATABASES = {
+    'default': {
+        'ENGINE': 'django.contrib.gis.db.backends.postgis', # Moteur PostGIS
+        'NAME': 'gwork_db',
+        'USER': 'gwork_user',
+        'PASSWORD': 'gwork_password',
+        'HOST': 'localhost',
+        'PORT': '5432',
+    }
+}
+"""
 DATABASES = {
     'default': dj_database_url.parse(
         config('DATABASE_URL'),
@@ -233,6 +235,7 @@ SPECTACULAR_SETTINGS = {
 CORS_ALLOWED_ORIGINS = [
     "http://localhost:3000",  # Ton frontend React
     "http://127.0.0.1:3000",
+    "http://127.0.0.1:8000",
     "https://gworks.netlify.app",
     
 ]
